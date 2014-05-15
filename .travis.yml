@@ -4,4 +4,4 @@ python:
     - "2.7"
     - "3.3"
 
-scripts: echo "Not implemented"
+script: echo "Not implemented"
