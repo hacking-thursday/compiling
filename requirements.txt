@@ -1,0 +1,2 @@
+six>=1.6.1
+wheezy.template>=0.1.151
