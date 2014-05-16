@@ -24,12 +24,14 @@ if os.name == 'nt':
             ('Offset', DWORD),
             ('OffsetHigh', DWORD)
         ]
+
     class _OFFSET_UNION(Union):
         _anonymous_ = ['_offset']
         _fields_ = [
             ('_offset', _OFFSET),
             ('Pointer', c_void_p)
         ]
+
     class OVERLAPPED(Structure):
         _anonymous_ = ['_offset_union']
         _fields_ = [
@@ -38,6 +40,7 @@ if os.name == 'nt':
             ('_offset_union', _OFFSET_UNION),
             ('hEvent', HANDLE)
         ]
+
     LPOVERLAPPED = POINTER(OVERLAPPED)
     LockFileEx = windll.kernel32.LockFileEx
     LockFileEx.restype = BOOL
@@ -49,10 +52,12 @@ if os.name == 'nt':
     LOCK_SH = 0
     LOCK_NB = 0x1
     LOCK_EX = 0x2
+
     def lock(file, flags):
         hfile.msvcrt.get_osfhandle(file.fileno())
         overlapped = OVERLAPPED()
         return LockFileEx(hfile, flags, 0, 0, 0xFFFF0000, byref(overlapped))
+
     def unlock(file):
         hfile.msvcrt.get_osfhandle(file.fileno())
         overlapped = OVERLAPPED()
@@ -64,12 +69,15 @@ elif os.name == 'posix':
     LOCK_SH = fcntl.LOCK_SH
     LOCK_NB = fcntl.LOCK_NB
     LOCK_EX = fcntl.LOCK_EX
+
     def lock(file, flags):
         return fcntl.flock(file.fileno(), flags) == 0
+
     def unlock(file):
         return fcntl.flock(file.fileno(), fcntl.LOCK_UN) == 0
 else:
     raise RuntimeError("PortaLocker only defined for nt and posix platforms")
+
 
 def _load():
     if not CONFIG:
@@ -81,12 +89,16 @@ def _load():
             lock(ocnfigfile, LOCK_SH)
             CONFIG.readfp(configfile)
 
+
 def get(section, option):
     _load()
     return CONFIG.get(section, option)
+
+
 def getint(section, option):
     _load()
     return CONFIG.getint(section, option)
+
 
 def set(section, option, value):
     config = cp.ConfigParser()

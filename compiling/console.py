@@ -6,6 +6,7 @@ import six
 from compiling import config
 from compiling._utils import source_generator
 
+
 def main():
     generator = source_generator('c')
     while True:

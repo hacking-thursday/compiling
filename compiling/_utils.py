@@ -10,13 +10,16 @@ DATADIR = 'data'
 
 _data = {}
 
+
 def join_sys(*path):
     '''build a path under the system's directory'''
     return os.path.join(SYSDIR, *path)
 
+
 def join_user(*path):
     '''build a path under the user's directory'''
     return os.path.join(USERDIR, *path)
+
 
 def _load_data():
     dataroot = join_sys(DATADIR)
@@ -28,14 +31,17 @@ def _load_data():
         with open(join_sys(DATADIR, filename)) as f:
             _data[src] = list(yaml.safe_load_all(f))
 
+
 def source_generator(src):
     if src not in _data:
-        raise NotImplementedError('source_generator does not support src = {}'.format(src))
+        raise NotImplementedError(
+            'source_generator does not support src = %s' % src
+        )
 
     random.seed()
 
     while True:
-        yield _data[src][random.randint(0, len(_data[src])-1)]
+        yield _data[src][random.randint(0, len(_data[src]) - 1)]
 
 _load_data()
 if not os.path.exists(USERDIR):

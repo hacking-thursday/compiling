@@ -14,12 +14,16 @@ SUFFIX_TRANSLATE = {
     'y': 'c',
 }
 
+
 def compiled(path):
     def lookup(match):
         return '.' + SUFFIX_TRANSLATE[
-            match.string[match.start() + 1 : match.end()]
+            match.string[match.start() + 1: match.end()]
         ]
+
     def build_suffix(pattern):
         return re.escape('.' + pattern) + '$'
-    regex = re.compile('(%s)' % '|'.join(map(build_suffix, SUFFIX_TRANSLATE.keys())))
+    regex = re.compile('(%s)' % '|'.join(
+        map(build_suffix, SUFFIX_TRANSLATE.keys())
+    ))
     return regex.sub(lookup, path)
