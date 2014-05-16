@@ -12,7 +12,7 @@ Warning, do not use compiling at work.
 Report Bug
 ==========
 
-Please report any bug to https://github.com/hacking-thursday/compiling/issues
+Please report any bug to https://github.com/hacking-thursday/compiling/issues.
 
 LICENSE
 =======
