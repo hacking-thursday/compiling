@@ -1,0 +1,21 @@
+target: chewing
+source:
+    - src/compat.c.o
+    - src/chewingio.c.o
+    - src/chewingutil.c.o
+    - src/choice.c.o
+    - src/dict.c.o
+    - src/mod_aux.c.o
+    - src/pinyin.c.o
+    - src/porting_layer/src/plat_mmap_posix.c
+    - src/porting_layer/src/plat_mmap_windows.c
+    - src/porting_layer/src/plat_path.c
+    - src/porting_layer/src/rpl_malloc.c
+    - src/tree.c.o
+    - src/userphrase.c.o
+    - src/bopomofo.c.o
+---
+target: common
+source:
+    - src/common/chewing-utf8-util.c
+    - src/common/key2pho.c
