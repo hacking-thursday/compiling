@@ -29,7 +29,7 @@ setup(
         'Programming Language :: Python :: 3',
     ],
     keywords='compile',
-    packages=find_packages(exclude=['docs', 'tests']),
+    packages=find_packages(exclude=['docs', 'test']),
     install_requires=requirement,
     package_data={
     },
