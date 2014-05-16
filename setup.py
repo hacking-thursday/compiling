@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 from setuptools import setup, find_packages
-import codes
+import codecs
 import os
 import re
 import compiling
 
 here = os.path.abspath(os.path.dirname(__file__))
 
-with codes.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
+with codecs.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
-with codes.open(os.path.join(here, 'requirements.txt'), encoding='utf-8') as f:
+with codecs.open(os.path.join(here, 'requirements.txt'), encoding='utf-8') as f:
     requirement = f.read()
 
 setup(
@@ -29,6 +29,7 @@ setup(
         'Programming Language :: Python :: 3',
     ],
     keywords='compile',
+    packages=find_packages(exclude=['docs', 'tests']),
     install_requires=requirement,
     package_data={
     },
@@ -36,7 +37,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'bin/compiling',
+            'compiling = compiling.console:main',
         ],
     },
 )
