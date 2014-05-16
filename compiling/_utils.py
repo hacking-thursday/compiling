@@ -8,7 +8,7 @@ _data = {}
 def _load_data():
     dataroot = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data'))
     for filename in os.listdir(dataroot):
-        if not filename.endswith(".yml"):
+        if not filename.endswith('.yml'):
             continue
         src = filename[:-4]
 
@@ -17,7 +17,7 @@ def _load_data():
 
 def source_generator(src):
     if src not in _data:
-        raise NotImplementedError("source_generator does not support src = {}".format(src))
+        raise NotImplementedError('source_generator does not support src = {}'.format(src))
 
     random.seed()
 
